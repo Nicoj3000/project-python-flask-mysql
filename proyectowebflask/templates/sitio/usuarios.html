@@ -1,0 +1,51 @@
+{% include 'sitio/head.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-header">Formulario de registro de usuarios</h5>
+                <div class="card-body">
+                  <form action="/sitio/guardar_usuario" method="post">
+                    <div class="mb-3">
+                      <label for="username" class="form-label">Username</label>
+                      <input type="text" class="form-control" name="username" placeholder="Username del usuario" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" name="password" placeholder="Password del usuario" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for usuario in usuarios %}
+                  <tr>
+                    <th scope="row">{{ usuario['id'] }}</th>
+                    <td>{{ usuario['username'] }}</td>
+                    <td>{{ usuario['password'] }}</td>
+                    <td>
+                      <a href="/sitio/editar_usuario/{{ usuario['id'] }}" class="btn btn-success">Editar</a>
+                      <a href="/sitio/eliminar_usuario/{{ usuario['id'] }}" class="btn btn-danger">Borrar</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% include 'sitio/footer.html' %}

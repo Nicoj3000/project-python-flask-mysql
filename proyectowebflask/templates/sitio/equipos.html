@@ -1,0 +1,55 @@
+{% include 'sitio/head.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-header">Formulario de registro</h5>
+                <div class="card-body">
+                  <form action="/sitio/guardar_equipo" method="post">
+                    <div class="mb-3">
+                      <label for="codigo" class="form-label">Codigo</label>
+                      <input type="number" class="form-control" name="codigo" placeholder="Codigo del equipo" readonly>
+                    </div>
+                    <div class="mb-3">
+                      <label for="descripcion" class="form-label">Descripcion</label>
+                      <input type="text" class="form-control" name="descripcion" placeholder="Descripcion de equipo" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email del responsable</label>
+                      <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">COD</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for equipo in equipos %}
+                  <tr>
+                    <th scope="row">{{ equipo['codigo'] }}</th>
+                    <td>{{ equipo['descripcion'] }}</td>
+                    <td>{{ equipo['email'] }}</td>
+                    <td>
+                      <a href="/sitio/editar_equipo/{{ equipo['codigo'] }}" class="btn btn-success">Editar</a>
+                      <a href="/sitio/eliminar_equipo/{{ equipo['codigo'] }}" class="btn btn-danger">Borrar</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% include 'sitio/footer.html' %}
