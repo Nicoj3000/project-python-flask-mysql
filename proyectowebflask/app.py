@@ -34,7 +34,7 @@ def guardar():
     conexion.commit()
     return redirect('/sitio/equipos')
 
-@app.route('/sitio/eliminar/<int:id>')
+@app.route('/sitio/eliminar/<int:id>', methods=['POST'])
 def eliminar(id):
     conexion = mysql.connection
     cursor = conexion.cursor()

@@ -6,10 +6,10 @@
             <div class="card">
                 <h5 class="card-header">Formulario de registro</h5>
                 <div class="card-body">
-                  <form action="/sitio/guardar_equipo" method="post">
+                  <form action="/sitio/guardar" method="post">
                     <div class="mb-3">
                       <label for="codigo" class="form-label">Codigo</label>
-                      <input type="number" class="form-control" name="codigo" placeholder="Codigo del equipo" readonly>
+                      <input type="number" class="form-control" name="codigo" placeholder="Codigo del equipo" required>
                     </div>
                     <div class="mb-3">
                       <label for="descripcion" class="form-label">Descripcion</label>
@@ -41,8 +41,10 @@
                     <td>{{ equipo['descripcion'] }}</td>
                     <td>{{ equipo['email'] }}</td>
                     <td>
-                      <a href="/sitio/editar_equipo/{{ equipo['codigo'] }}" class="btn btn-success">Editar</a>
-                      <a href="/sitio/eliminar_equipo/{{ equipo['codigo'] }}" class="btn btn-danger">Borrar</a>
+                      <a href="/sitio/editar/{{ equipo['codigo'] }}" class="btn btn-success">Editar</a>
+                      <form action="/sitio/eliminar/{{ equipo['codigo'] }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Borrar</button>
+                      </form>
                     </td>
                   </tr>
                   {% endfor %}
